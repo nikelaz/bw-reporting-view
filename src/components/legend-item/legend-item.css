@@ -1,0 +1,16 @@
+.LegendItem {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.LegendItem-color {
+  border-radius: 3px;
+  width: 30px;
+  height: 20px;
+}
+
+.LegendItem-label {
+  font-weight: 500;
+}
