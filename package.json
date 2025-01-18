@@ -1,5 +1,5 @@
 {
-  "name": "reporting-view",
+  "name": "@nikelaz/bw-reporting-view",
   "version": "0.0.2",
   "type": "module",
   "files": [
