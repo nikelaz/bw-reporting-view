@@ -89,7 +89,7 @@ export default function DoughnutChart(props: DoughnutChartProps) {
     }
 
     if (context.parsed.y !== null) {
-      label += currencyFormatter.format(parseFloat(context.formattedValue));
+      label += currencyFormatter.format(parseFloat(context.raw));
     }
 
     return label;
