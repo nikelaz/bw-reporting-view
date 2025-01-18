@@ -7,8 +7,8 @@ interface GroupButtonProps extends GenericChildrenProps {
 }
 
 const GroupButton = (props: GroupButtonProps) => {
-  const bgColor = props.theme === 'dark' ? '#1c1c1e' : '#f2f2f7';
-  const bgActiveColor = props.theme === 'dark' ? '#2c2c2e' : '#e5e5ea';
+  const bgColor = props.theme === 'dark' ? '#2c2c2e' : '#f2f2f7';
+  const bgActiveColor = props.theme === 'dark' ? '#3a3a3c' : '#e5e5ea';
   const textColor = props.theme === 'dark' ? '#ECEDEE' : '#11181C';
 
   return (

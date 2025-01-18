@@ -3,7 +3,7 @@ import { Chart, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import Card from '../components/card/card';
 import { ChartColorsProvider } from '../helpers/chart-colors';
-import GroupButton from '../components/group-button/group-button';
+import GroupButton from './group-button/group-button';
 import { CurrencyFormatter } from '@nikelaz/bw-shared-libraries';
 import LegendItem from './legend-item/legend-item';
 import { CategoryType } from '../types/category-type';
@@ -41,6 +41,7 @@ export default function DoughnutChart(props: DoughnutChartProps) {
         ...datasetDefaults,
         data: incomeCategoryBudgets.map((categoryBudget: CategoryBudget) => categoryBudget.amount),
         backgroundColor: incomeCategoryBudgets.map(() => colorsProvider.getIncomeColor(0)),
+        borderColor: props.theme === 'dark' ? '#1c1c1e' : '#fff',
       },
     ],
   };
@@ -65,7 +66,8 @@ export default function DoughnutChart(props: DoughnutChartProps) {
           ...expensesCategoryBudgets.map(() => colorsProvider.getOutflowColor(0)),
           ...debtCategoryBudgets.map(() => colorsProvider.getOutflowColor(1)),
           ...savingsCategoryBudgets.map(() => colorsProvider.getOutflowColor(2)),
-        ]
+        ],
+        borderColor: props.theme === 'dark' ? '#1c1c1e' : '#fff',
       },
     ],
     plugins: {
