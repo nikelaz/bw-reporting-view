@@ -2,14 +2,3 @@
   background-color: #000;
   color: #fff;
 }
-
-.wrapper {
-  height: 100vh;
-  overflow: hidden;
-}
-
-.Heading {
-  font-size: 22px;
-  font-weight: 600;
-  margin-bottom: 15px;
-}

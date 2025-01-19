@@ -5,6 +5,7 @@ import ColLayout from './components/col-layout/col-layout.tsx';
 import SankeyChart from './components/sankey-chart';
 import DoughnutChart from './components/doughnut-chart.tsx';
 import { CategoryType } from './types/category-type';
+import Heading from './components/heading/heading.tsx';
 
 function App() {
   const [categoryBudgetModel, setCategoryBudgetModel] = useState(window.categoryBudgetModel);
@@ -77,7 +78,7 @@ function App() {
         </Card>
 
         <Card>
-          <h2 className="Heading">Flow</h2>
+          <Heading>Flow</Heading>
           <SankeyChart categoryBudgetModel={categoryBudgetModel} currency={currency} theme={theme} />
         </Card>
 

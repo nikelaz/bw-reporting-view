@@ -7,6 +7,7 @@ import GroupButton from './group-button/group-button';
 import { CurrencyFormatter } from '@nikelaz/bw-shared-libraries';
 import LegendItem from './legend-item/legend-item';
 import { CategoryType } from '../types/category-type';
+import Heading from './heading/heading';
 
 Chart.register(ArcElement, Tooltip, Legend);
 Chart.overrides['doughnut'].plugins.legend.display = false;
@@ -77,12 +78,6 @@ export default function DoughnutChart(props: DoughnutChartProps) {
     }
   };
 
-  const headingStyle = {
-    fontSize: 22,
-    fontWeight: 600,
-    marginBottom: 15,
-  }
-
   const labelRenderer = (context: any) => {
     let label = context.dataset.label || '';
 
@@ -111,7 +106,7 @@ export default function DoughnutChart(props: DoughnutChartProps) {
   return (
     <>
       <Card>
-        <h2 style={headingStyle}>Breakdown</h2>
+        <Heading>Breakdown</Heading>
         <div className="GroupButton-wrap" style={{ marginBottom: 15 }}>
           <GroupButton
             theme={props.theme}
