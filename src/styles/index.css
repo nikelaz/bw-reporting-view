@@ -1,3 +1,7 @@
+body {
+  touch-action: none;
+}
+
 .theme\:dark {
   background-color: #000;
   color: #fff;
