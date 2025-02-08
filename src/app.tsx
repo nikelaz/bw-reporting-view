@@ -12,17 +12,34 @@ function App() {
   const [theme, setTheme] = useState(window.theme);
   const [currency, setCurrency] = useState(window.currency);
 
+  const notifyHeight = () => {
+    const wrap = document.querySelector('.wrapper');
+    if (!wrap) {
+      return;
+    }
+
+    const height = wrap.clientHeight;
+
+    if (!window.ReactNativeWebView) {
+      setTimeout(() => notifyHeight(), 100);
+    }
+
+    window.ReactNativeWebView.postMessage(JSON.stringify({ height }));
+  };
+
   useEffect(() => {
     if (document.readyState === 'complete') {
       setCategoryBudgetModel(window.categoryBudgetModel);
       setTheme(window.theme);
       setCurrency(window.currency);
+      notifyHeight();
     }
 
     const loadEventHandler = () => {
       setCategoryBudgetModel(window.categoryBudgetModel);
       setTheme(window.theme);
       setCurrency(window.currency);
+      notifyHeight();
     };
 
     window.addEventListener('load', loadEventHandler);
