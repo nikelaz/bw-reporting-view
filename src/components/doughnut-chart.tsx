@@ -25,7 +25,13 @@ interface DoughnutChartProps {
   currency: string;
   theme: Theme;
   categoryBudgetModel: any;
+}
 
+const shouldDisplayLegendForCategoryBudget = (categoryBudgets: any[]) => {
+  if (categoryBudgets.length === 0) return false;
+  const total = categoryBudgets.reduce((x, y) => x.amount + y.amount);
+  if (typeof total === 'number' && total > 0) return true;
+  return false;
 }
 
 export default function DoughnutChart(props: DoughnutChartProps) {
@@ -137,25 +143,25 @@ export default function DoughnutChart(props: DoughnutChartProps) {
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', justifyContent: 'space-between'}}>
           {mode === Mode.OUTFLOW && (
             <>
-              {expensesCategoryBudgets.length > 0 && (
+              {shouldDisplayLegendForCategoryBudget(expensesCategoryBudgets) ? (
                 <LegendItem color={colorsProvider.getOutflowColor(0)} label="Expenses" />
-              )}
+              ) : null }
 
-              {debtCategoryBudgets.length > 0 && (
+              {shouldDisplayLegendForCategoryBudget(debtCategoryBudgets) ? (
                 <LegendItem color={colorsProvider.getOutflowColor(1)} label="Debt" />
-              )}
+              ) : null }
 
-              {savingsCategoryBudgets.length > 0 && (
+              {shouldDisplayLegendForCategoryBudget(savingsCategoryBudgets) ? (
                 <LegendItem color={colorsProvider.getOutflowColor(2)} label="Savings" />
-              )}
+              ) : null }
             </>
           )}
           
           {mode === Mode.INFLOW && (
             <>
-              {expensesCategoryBudgets.length > 0 && (
+              {shouldDisplayLegendForCategoryBudget(expensesCategoryBudgets) ? (
                 <LegendItem color={colorsProvider.getIncomeColor(0)} label="Income" />
-              )}
+              ) : null }
             </>
           )}
         </div>
