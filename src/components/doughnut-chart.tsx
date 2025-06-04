@@ -24,7 +24,7 @@ const datasetDefaults = {
 interface DoughnutChartProps {
   currency: string;
   theme: Theme;
-  categoryBudgetModel: any;
+  categoryBudgetsByType: any;
 }
 
 const shouldDisplayLegendForCategoryBudget = (categoryBudgets: any[]) => {
@@ -40,7 +40,7 @@ export default function DoughnutChart(props: DoughnutChartProps) {
   colorsProvider.setTheme(props.theme);
   const currencyFormatter = new CurrencyFormatter(props.currency);
 
-  const incomeCategoryBudgets = props.categoryBudgetModel.categoryBudgetsByType[CategoryType.INCOME];
+  const incomeCategoryBudgets = props.categoryBudgetsByType[CategoryType.INCOME];
   const incomeData = {
     labels: incomeCategoryBudgets.map((categoryBudget: CategoryBudget) => categoryBudget.category?.title),
     datasets: [
@@ -53,9 +53,9 @@ export default function DoughnutChart(props: DoughnutChartProps) {
     ],
   };
 
-  const expensesCategoryBudgets = props.categoryBudgetModel.categoryBudgetsByType[CategoryType.EXPENSE];
-  const debtCategoryBudgets = props.categoryBudgetModel.categoryBudgetsByType[CategoryType.DEBT];
-  const savingsCategoryBudgets = props.categoryBudgetModel.categoryBudgetsByType[CategoryType.SAVINGS];
+  const expensesCategoryBudgets = props.categoryBudgetsByType[CategoryType.EXPENSE];
+  const debtCategoryBudgets = props.categoryBudgetsByType[CategoryType.DEBT];
+  const savingsCategoryBudgets = props.categoryBudgetsByType[CategoryType.SAVINGS];
 
   const outflowCategoryBudgets = [
     ...expensesCategoryBudgets,

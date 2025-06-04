@@ -8,7 +8,7 @@ import { CategoryType } from './types/category-type';
 import Heading from './components/heading/heading.tsx';
 
 function App() {
-  const [categoryBudgetModel, setCategoryBudgetModel] = useState(window.categoryBudgetModel);
+  const [categoryBudgetsByType, setCategoryBudgetsByType] = useState(window.categoryBudgetsByType);
   const [theme, setTheme] = useState(window.theme);
   const [currency, setCurrency] = useState(window.currency);
 
@@ -29,14 +29,14 @@ function App() {
 
   useEffect(() => {
     if (document.readyState === 'complete') {
-      setCategoryBudgetModel(window.categoryBudgetModel);
+      setCategoryBudgetsByType(window.categoryBudgetsByType);
       setTheme(window.theme);
       setCurrency(window.currency);
       notifyHeight();
     }
 
     const loadEventHandler = () => {
-      setCategoryBudgetModel(window.categoryBudgetModel);
+      setCategoryBudgetsByType(window.categoryBudgetsByType);
       setTheme(window.theme);
       setCurrency(window.currency);
       notifyHeight();
@@ -47,13 +47,15 @@ function App() {
     return () => {
       window.removeEventListener('load', loadEventHandler);
     }
-  }, [setCategoryBudgetModel, setTheme, setCurrency]);
+  }, [setCategoryBudgetsByType, setTheme, setCurrency]);
 
-  const incomeCategoryBudgets = categoryBudgetModel.categoryBudgetsByType[CategoryType.INCOME];
+  if (!categoryBudgetsByType) return null;
+
+  const incomeCategoryBudgets = categoryBudgetsByType[CategoryType.INCOME];
   const nonIncomeCategoryBudgets = [
-    ...categoryBudgetModel.categoryBudgetsByType[CategoryType.EXPENSE],
-    ...categoryBudgetModel.categoryBudgetsByType[CategoryType.SAVINGS],
-    ...categoryBudgetModel.categoryBudgetsByType[CategoryType.DEBT],
+    ...categoryBudgetsByType[CategoryType.EXPENSE],
+    ...categoryBudgetsByType[CategoryType.SAVINGS],
+    ...categoryBudgetsByType[CategoryType.DEBT],
   ]
 
   const totalIncome = incomeCategoryBudgets.reduce((accumulator: number, categoryBudget: CategoryBudget) => accumulator += categoryBudget.amount, 0);
@@ -96,10 +98,10 @@ function App() {
 
         <Card>
           <Heading>Flow</Heading>
-          <SankeyChart categoryBudgetModel={categoryBudgetModel} currency={currency} theme={theme} />
+          <SankeyChart categoryBudgetsByType={categoryBudgetsByType} currency={currency} theme={theme} />
         </Card>
 
-        <DoughnutChart categoryBudgetModel={categoryBudgetModel} currency={currency} theme={theme} />
+        <DoughnutChart categoryBudgetsByType={categoryBudgetsByType} currency={currency} theme={theme} />
       </ColLayout>
     </div>
   );

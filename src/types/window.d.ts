@@ -1,5 +1,5 @@
 interface Window {
-  categoryBudgetModel: any;
+  categoryBudgetsByType: any;
   theme: 'light' | 'dark';
   currency: string;
   ReactNativeWebView: any;

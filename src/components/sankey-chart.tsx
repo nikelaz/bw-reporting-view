@@ -13,7 +13,7 @@ Chart.defaults.font.size = 16;
 Chart.defaults.font.weight = 'bold';
 
 interface SankeyChartProps {
-  categoryBudgetModel: any,
+  categoryBudgetsByType: any,
   currency: string,
   theme: Theme,
   aspectRatioStr?: string,
@@ -21,7 +21,7 @@ interface SankeyChartProps {
 
 const SankeyChart = (props: SankeyChartProps) => {
   const [isLoading, setIsLoading] = useState(false);
-  const incomeCategoryBudgets = props.categoryBudgetModel.categoryBudgetsByType[CategoryType.INCOME];
+  const incomeCategoryBudgets = props.categoryBudgetsByType[CategoryType.INCOME];
   const incomeChartSegments = incomeCategoryBudgets.flatMap((categoryBudget: CategoryBudget) => {
     if (!categoryBudget.amount) return [];
     return [{
@@ -35,13 +35,13 @@ const SankeyChart = (props: SankeyChartProps) => {
   const colorsProvider = new ChartColorsProvider();
   colorsProvider.setTheme(props.theme);
 
-  const savingsCategoryBudgets = props.categoryBudgetModel.categoryBudgetsByType[CategoryType.SAVINGS];
+  const savingsCategoryBudgets = props.categoryBudgetsByType[CategoryType.SAVINGS];
   const totalSavings = savingsCategoryBudgets.reduce((accumulator: number, categoryBudget: CategoryBudget) => accumulator += categoryBudget.amount, 0);
 
-  const expensesCategoryBudgets = props.categoryBudgetModel.categoryBudgetsByType[CategoryType.EXPENSE];
+  const expensesCategoryBudgets = props.categoryBudgetsByType[CategoryType.EXPENSE];
   const totalExpenses = expensesCategoryBudgets.reduce((accumulator: number, categoryBudget: CategoryBudget) => accumulator += categoryBudget.amount, 0);
 
-  const debtCategoryBudgets = props.categoryBudgetModel.categoryBudgetsByType[CategoryType.DEBT];
+  const debtCategoryBudgets = props.categoryBudgetsByType[CategoryType.DEBT];
   const totalDebt = debtCategoryBudgets.reduce((accumulator: number, categoryBudget: CategoryBudget) => accumulator += categoryBudget.amount, 0);
 
   const otherChartSegments: any[] = [];
