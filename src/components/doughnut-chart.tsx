@@ -29,7 +29,13 @@ interface DoughnutChartProps {
 
 const shouldDisplayLegendForCategoryBudget = (categoryBudgets: any[]) => {
   if (categoryBudgets.length === 0) return false;
-  const total = categoryBudgets.reduce((x, y) => x.amount + y.amount);
+  let total = 0;
+  if (categoryBudgets.length === 1) {
+    total = categoryBudgets[0].amount;
+  }
+  else {
+    total = categoryBudgets.reduce((x, y) => x.amount + y.amount);
+  }
   if (typeof total === 'number' && total > 0) return true;
   return false;
 }
