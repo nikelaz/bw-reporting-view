@@ -41,4 +41,7 @@
   window.theme = "light";
   window.currency = "USD";
   window.dispatchEvent(new Event("load"));
+  window.ReactNativeWebView = {
+    postMessage: () => {},
+  };
 </script>
